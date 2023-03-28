@@ -34,14 +34,17 @@ public class PlayerController : MonoBehaviour
     {
         float yStore = moveDirection.y;
         //moveDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
-        moveDirection = (transform.forward * Input.GetAxisRaw("Vertical")) + (transform.right  * Input.GetAxisRaw("Horizontal"));
+        moveDirection = (transform.forward * Input.GetAxisRaw("Vertical")) + (transform.right * Input.GetAxisRaw("Horizontal"));
         moveDirection.Normalize();
         moveDirection *= MovementSpeed;
         moveDirection.y = yStore;
 
-        if (Input.GetButtonDown("Jump"))
+        if (CharContr.isGrounded)
         {
-            moveDirection.y = JumpForce;
+            if (Input.GetButtonDown("Jump"))
+            {
+                moveDirection.y = JumpForce;
+            }
         }
 
         moveDirection.y += Physics.gravity.y * Time.deltaTime * GravityScale;
@@ -55,5 +58,6 @@ public class PlayerController : MonoBehaviour
         }
 
         TheAnimator.SetFloat("Speed", Mathf.Abs(moveDirection.x) + Mathf.Abs(moveDirection.z));
+        TheAnimator.SetBool("Grounded", CharContr.isGrounded);
     }
 }
