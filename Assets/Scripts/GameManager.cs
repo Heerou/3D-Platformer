@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager InstanceGM;
+
+    private void Awake()
+    {
+        InstanceGM = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,5 +22,10 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Respawn()
+    {
+        Debug.Log("Ahora voy a revivir");
     }
 }
