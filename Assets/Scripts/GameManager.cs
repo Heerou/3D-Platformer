@@ -17,14 +17,10 @@ public class GameManager : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        
-        playerRespawnPos = PlayerController.Instance.transform.position;
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        playerRespawnPos = PlayerController.Instance.transform.position;
+
+        UIManager.UI_Instance.FadeFromBlack = true;
     }
 
     public void Respawn()
@@ -37,10 +33,12 @@ public class GameManager : MonoBehaviour
         //Deactivates the player
         PlayerController.Instance.gameObject.SetActive(false);
         CameraController.Instance.CmBrain.enabled = false;
-        
-        //star coroutine
+        UIManager.UI_Instance.FadeToBlack = true;
+
+        //start coroutine
         yield return new WaitForSeconds(2f);
-        
+        UIManager.UI_Instance.FadeFromBlack = true;
+
         //Set the player and camera position for the one that he had
         PlayerController.Instance.transform.position = playerRespawnPos;
         //Reactivates the player and the camera
