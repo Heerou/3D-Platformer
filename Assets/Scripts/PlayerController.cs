@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance;
+    
     public float MovementSpeed;
     public float JumpForce;
     public float GravityScale;
@@ -17,6 +20,11 @@ public class PlayerController : MonoBehaviour
     public GameObject PlayerModel;
 
     public Animator TheAnimator;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()

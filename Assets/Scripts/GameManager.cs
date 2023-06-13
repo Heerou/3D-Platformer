@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager InstanceGM;
+    private Vector3 playerRespawnPos;
 
     private void Awake()
     {
@@ -16,6 +17,8 @@ public class GameManager : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        
+        playerRespawnPos = PlayerController.Instance.transform.position;
     }
 
     // Update is called once per frame
@@ -26,6 +29,22 @@ public class GameManager : MonoBehaviour
 
     public void Respawn()
     {
-        Debug.Log("Ahora voy a revivir");
+        StartCoroutine(Respawnco());
+    }
+
+    public IEnumerator Respawnco()
+    {
+        //Deactivates the player
+        PlayerController.Instance.gameObject.SetActive(false);
+        CameraController.Instance.CmBrain.enabled = false;
+        
+        //star coroutine
+        yield return new WaitForSeconds(2f);
+        
+        //Set the player and camera position for the one that he had
+        PlayerController.Instance.transform.position = playerRespawnPos;
+        //Reactivates the player and the camera
+        PlayerController.Instance.gameObject.SetActive(true);
+        CameraController.Instance.CmBrain.enabled = true;
     }
 }
