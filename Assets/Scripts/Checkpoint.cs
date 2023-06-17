@@ -5,26 +5,20 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
-    [SerializeField]
-    GameObject cpOff, cpOn;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    [SerializeField] private GameObject cpOff, cpOn;
     //checks if the player has reached the checkpoint
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             GameManager.InstanceGM.SetSpawnPoint(transform.position);
+            //Get all the checkpoints
+            Checkpoint[] all_checkPoints = FindObjectsOfType<Checkpoint>();
+            foreach (var check_point in all_checkPoints)
+            {
+                check_point.cpOff.SetActive(true);
+                check_point.cpOn.SetActive(false);
+            }
             cpOff.SetActive(false);
             cpOn.SetActive(true);
         }
