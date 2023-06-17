@@ -34,9 +34,9 @@ public class GameManager : MonoBehaviour
         PlayerController.Instance.gameObject.SetActive(false);
         CameraController.Instance.CmBrain.enabled = false;
         UIManager.UI_Instance.FadeToBlack = true;
-
-        //start coroutine
+        
         yield return new WaitForSeconds(2f);
+        HealthManager.HealthInstance.ResetHealth();
         UIManager.UI_Instance.FadeFromBlack = true;
 
         //Set the player and camera position for the one that he had
