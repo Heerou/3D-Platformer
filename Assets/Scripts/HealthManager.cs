@@ -26,7 +26,7 @@ public class HealthManager : MonoBehaviour
         if (invicibleCounter > 0)
         {
             invicibleCounter -= Time.deltaTime;
-            
+
             for (int i = 0; i < PlayerController.Instance.PlayerPieces.Length; i++)
             {
                 if (Mathf.Floor(invicibleCounter * 5f) % 2 == 0)
@@ -64,5 +64,14 @@ public class HealthManager : MonoBehaviour
     public void ResetHealth()
     {
         CurrentHealth = MaxHealth;
+    }
+
+    public void AddHealth(int amountToHeal)
+    {
+        CurrentHealth += amountToHeal;
+        if (CurrentHealth > MaxHealth)
+        {
+            CurrentHealth = MaxHealth;
+        }
     }
 }
