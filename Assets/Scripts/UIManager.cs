@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     [FormerlySerializedAs("FadeSpee")] public float FadeSpeed = 2f;
     public bool FadeToBlack, FadeFromBlack;
     public Text HealthText;
+    public Image HealthImage;
 
     private void Awake()
     {

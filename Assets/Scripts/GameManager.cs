@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     public void Respawn()
     {
         StartCoroutine(RespawnCo());
+        HealthManager.HealthInstance.PlayerKilled();
     }
 
     public IEnumerator RespawnCo()
