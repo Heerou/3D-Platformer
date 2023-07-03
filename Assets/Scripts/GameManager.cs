@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager InstanceGM;
     private Vector3 playerRespawnPos;
+    
+    [SerializeField] private GameObject playerDeathFX;
 
     private void Awake()
     {
@@ -25,17 +28,20 @@ public class GameManager : MonoBehaviour
 
     public void Respawn()
     {
-        StartCoroutine(Respawnco());
+        StartCoroutine(RespawnCo());
     }
 
-    public IEnumerator Respawnco()
+    public IEnumerator RespawnCo()
     {
         //Deactivates the player
         PlayerController.Instance.gameObject.SetActive(false);
         CameraController.Instance.CmBrain.enabled = false;
         UIManager.UI_Instance.FadeToBlack = true;
+
+        Instantiate(playerDeathFX, PlayerController.Instance.transform.position + new Vector3(0f,1f,0f), 
+            PlayerController.Instance.transform.rotation);
         
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
         HealthManager.HealthInstance.ResetHealth();
         UIManager.UI_Instance.FadeFromBlack = true;
 

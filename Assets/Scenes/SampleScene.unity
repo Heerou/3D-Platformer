@@ -190,8 +190,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87b867f2f9020a632b3f2d7d8c97b617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HealAmount: 2
+  HealthAmount: 2
   IsFullHealth: 0
+  healthFX: {fileID: 5330208039557931660, guid: f5999e713ffdc46b49362806e0c06f0e, type: 3}
 --- !u!1 &102189306 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7582118926050573579, guid: e6a5eb0fb5a1c3d47bc91e61a89a032f, type: 3}
@@ -210,7 +211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentHealth: 0
-  MaxHealth: 10
+  MaxHealth: 5
   InvincibleFramesLenght: 2
 --- !u!1001 &667105362
 PrefabInstance:
@@ -1111,21 +1112,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2144501550, guid: e6a5eb0fb5a1c3d47bc91e61a89a032f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3
+      objectReference: {fileID: 0}
     - target: {fileID: 7582118924776307123, guid: e6a5eb0fb5a1c3d47bc91e61a89a032f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000036388553
+      value: -0.00000002832613
       objectReference: {fileID: 0}
     - target: {fileID: 7582118924776307123, guid: e6a5eb0fb5a1c3d47bc91e61a89a032f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000010901475
+      value: 0.000000012528474
       objectReference: {fileID: 0}
     - target: {fileID: 7582118924902885323, guid: e6a5eb0fb5a1c3d47bc91e61a89a032f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000036760536
+      value: -0.000000028762537
       objectReference: {fileID: 0}
     - target: {fileID: 7582118924902885323, guid: e6a5eb0fb5a1c3d47bc91e61a89a032f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000009572468
+      value: 0.000000011491261
       objectReference: {fileID: 0}
     - target: {fileID: 7582118925140575602, guid: e6a5eb0fb5a1c3d47bc91e61a89a032f, type: 3}
       propertyPath: m_RootOrder
@@ -1201,19 +1206,23 @@ PrefabInstance:
       objectReference: {fileID: 7582118925215504136}
     - target: {fileID: 7582118925368146547, guid: e6a5eb0fb5a1c3d47bc91e61a89a032f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0000000041060417
+      value: 0.0000000041060413
       objectReference: {fileID: 0}
     - target: {fileID: 7582118925368146547, guid: e6a5eb0fb5a1c3d47bc91e61a89a032f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 2.2989492e-10
+      value: -2.2989491e-10
       objectReference: {fileID: 0}
+    - target: {fileID: 7582118926050573578, guid: e6a5eb0fb5a1c3d47bc91e61a89a032f, type: 3}
+      propertyPath: playerDeathFX
+      value: 
+      objectReference: {fileID: 1993170730311615857, guid: 557b6534020742434893bbfdff24d4a9, type: 3}
     - target: {fileID: 7582118926392596288, guid: e6a5eb0fb5a1c3d47bc91e61a89a032f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000038281872
+      value: -0.000000026848287
       objectReference: {fileID: 0}
     - target: {fileID: 7582118926392596288, guid: e6a5eb0fb5a1c3d47bc91e61a89a032f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000009862185
+      value: 0.000000012386762
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

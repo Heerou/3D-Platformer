@@ -6,33 +6,24 @@ using UnityEngine.Serialization;
 
 public class HealthPickUp : MonoBehaviour
 {
-    public int HealAmount;
+    [FormerlySerializedAs("HealAmount")] public int HealthAmount;
     public bool IsFullHealth;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] private GameObject healthFX; 
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
             Destroy(gameObject);
+            Instantiate(healthFX, transform.position, transform.rotation);
             if (IsFullHealth)
             {
                 HealthManager.HealthInstance.ResetHealth();
             }
             else
             {
-                HealthManager.HealthInstance.AddHealth(HealAmount);
+                HealthManager.HealthInstance.AddHealth(HealthAmount);
             }
         }
     }
