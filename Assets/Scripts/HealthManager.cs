@@ -18,7 +18,7 @@ public class HealthManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        CurrentHealth = MaxHealth;
+        ResetHealth();
     }
 
     private void Update()
@@ -59,11 +59,13 @@ public class HealthManager : MonoBehaviour
             PlayerController.Instance.Knockback();
             invicibleCounter = InvincibleFramesLenght;
         }
+        RefreshUIHealth();
     }
 
     public void ResetHealth()
     {
         CurrentHealth = MaxHealth;
+        RefreshUIHealth();
     }
 
     public void AddHealth(int amountToHeal)
@@ -73,5 +75,12 @@ public class HealthManager : MonoBehaviour
         {
             CurrentHealth = MaxHealth;
         }
+
+        RefreshUIHealth();
+    }
+
+    public void RefreshUIHealth()
+    {
+        UIManager.UI_Instance.HealthText.text = CurrentHealth.ToString();
     }
 }
