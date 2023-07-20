@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     public bool FadeToBlack, FadeFromBlack;
     public Text HealthText;
     public Image HealthImage;
+    public Text CoinText;
 
     private void Awake()
     {

@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] private GameObject playerDeathFX;
 
+    public int CurrentCoins;
+
     private void Awake()
     {
         InstanceGM = this;
@@ -24,6 +26,7 @@ public class GameManager : MonoBehaviour
         playerRespawnPos = PlayerController.Instance.transform.position;
 
         UIManager.UI_Instance.FadeFromBlack = true;
+        AddCoins(0);
     }
 
     public void Respawn()
@@ -58,5 +61,11 @@ public class GameManager : MonoBehaviour
     {
         playerRespawnPos = newSpawnPoint;
         Debug.Log("Spawn point set");
+    }
+
+    public void AddCoins(int coinToAdd)
+    {
+        CurrentCoins += coinToAdd;
+        UIManager.UI_Instance.CoinText.text = "" + "x" + CurrentCoins;
     }
 }
