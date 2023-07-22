@@ -33,7 +33,7 @@ Transform:
   - {fileID: 4183591637597382628}
   - {fileID: 1536757658107088791}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &1380576872231946398
 SphereCollider:
@@ -70,6 +70,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cpOff: {fileID: 1536757658106860471}
   cpOn: {fileID: 4183591637597748164}
+  soundToPlay: 4
 --- !u!1 &6002119396584612485
 GameObject:
   m_ObjectHideFlags: 0

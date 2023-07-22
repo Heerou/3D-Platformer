@@ -33,7 +33,7 @@ Transform:
   m_Children:
   - {fileID: 5625986902484609853}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &4590919187998368154
 SphereCollider:
@@ -70,6 +70,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CoinValue: 2
   pickupFX: {fileID: 5330208039557931660, guid: 101c192a3b9dc7296a47d1af7de8eea4, type: 3}
+  soundToPlay: 5
 --- !u!95 &731109614250390267
 Animator:
   serializedVersion: 5

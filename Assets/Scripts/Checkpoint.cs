@@ -6,6 +6,9 @@ using UnityEngine;
 public class Checkpoint : MonoBehaviour
 {
     [SerializeField] private GameObject cpOff, cpOn;
+    [SerializeField] private int soundToPlay; 
+
+
     //checks if the player has reached the checkpoint
     private void OnTriggerEnter(Collider other)
     {
@@ -22,5 +25,6 @@ public class Checkpoint : MonoBehaviour
             cpOff.SetActive(false);
             cpOn.SetActive(true);
         }
+        AudioManager.AudioManagerInstance.PlaySoundFX(soundToPlay);
     }
 }

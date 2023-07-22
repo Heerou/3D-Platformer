@@ -10,6 +10,7 @@ public class HealthPickUp : MonoBehaviour
     public bool IsFullHealth;
 
     [SerializeField] private GameObject healthFX; 
+    [SerializeField] private int soundToPlay; 
 
     private void OnTriggerEnter(Collider other)
     {
@@ -25,6 +26,7 @@ public class HealthPickUp : MonoBehaviour
             {
                 HealthManager.HealthInstance.AddHealth(HealthAmount);
             }
+            AudioManager.AudioManagerInstance.PlaySoundFX(soundToPlay);
         }
     }
 }

@@ -6,6 +6,7 @@ public class CoinPickUp : MonoBehaviour
 {
     public int CoinValue;
     [SerializeField] GameObject pickupFX;
+    [SerializeField] int soundToPlay;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,6 +15,7 @@ public class CoinPickUp : MonoBehaviour
             GameManager.InstanceGM.AddCoins(CoinValue);
             Destroy(gameObject);
             Instantiate(pickupFX, transform.position, transform.rotation);
+            AudioManager.AudioManagerInstance.PlaySoundFX(soundToPlay);
         }
     }
 }
