@@ -16,6 +16,8 @@ public class UIManager : MonoBehaviour
     public Image HealthImage;
     public Text CoinText;
 
+    public GameObject PauseScreen;
+
     private void Awake()
     {
         UI_Instance = this;
@@ -44,4 +46,13 @@ public class UIManager : MonoBehaviour
             }
         }
     }
+
+    public void Resume()
+    {
+        
+    }
+    public void OpenOptions(){}
+    public void CloseOptions(){}
+    public void LevelSelect(){}
+    public void MainMenu(){}
 }

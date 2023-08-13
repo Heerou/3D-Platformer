@@ -29,6 +29,11 @@ public class GameManager : MonoBehaviour
         AddCoins(0);
     }
 
+    private void Update()
+    {
+        PauseUnpauseTheGame();
+    }
+
     public void Respawn()
     {
         StartCoroutine(RespawnCo());
@@ -67,5 +72,22 @@ public class GameManager : MonoBehaviour
     {
         CurrentCoins += coinToAdd;
         UIManager.UI_Instance.CoinText.text = "" + "x" + CurrentCoins;
+    }
+
+    void PauseUnpauseTheGame()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(UIManager.UI_Instance.PauseScreen.activeInHierarchy)
+            {
+                UIManager.UI_Instance.PauseScreen.SetActive(false);
+                Time.timeScale = 1f;
+            }
+            else
+            {
+                UIManager.UI_Instance.PauseScreen.SetActive(true);
+                Time.timeScale = 0f;
+            }
+        }
     }
 }
