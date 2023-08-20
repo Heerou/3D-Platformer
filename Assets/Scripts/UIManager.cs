@@ -48,8 +48,8 @@ public class UIManager : MonoBehaviour
     }
 
     public void Resume()
-    {
-        
+    {        
+        GameManager.InstanceGM.PauseUnpauseTheGame();
     }
     public void OpenOptions(){}
     public void CloseOptions(){}

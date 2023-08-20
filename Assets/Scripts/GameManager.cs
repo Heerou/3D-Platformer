@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager InstanceGM;
     private Vector3 playerRespawnPos;
-    
+
     [SerializeField] private GameObject playerDeathFX;
 
     public int CurrentCoins;
@@ -31,7 +31,10 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        PauseUnpauseTheGame();
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseUnpauseTheGame();
+        }
     }
 
     public void Respawn()
@@ -47,9 +50,9 @@ public class GameManager : MonoBehaviour
         CameraController.Instance.CmBrain.enabled = false;
         UIManager.UI_Instance.FadeToBlack = true;
 
-        Instantiate(playerDeathFX, PlayerController.Instance.transform.position + new Vector3(0f,1f,0f), 
+        Instantiate(playerDeathFX, PlayerController.Instance.transform.position + new Vector3(0f, 1f, 0f),
             PlayerController.Instance.transform.rotation);
-        
+
         yield return new WaitForSeconds(3f);
         HealthManager.HealthInstance.ResetHealth();
         UIManager.UI_Instance.FadeFromBlack = true;
@@ -74,20 +77,23 @@ public class GameManager : MonoBehaviour
         UIManager.UI_Instance.CoinText.text = "" + "x" + CurrentCoins;
     }
 
-    void PauseUnpauseTheGame()
+    public void PauseUnpauseTheGame()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (UIManager.UI_Instance.PauseScreen.activeInHierarchy)
         {
-            if(UIManager.UI_Instance.PauseScreen.activeInHierarchy)
-            {
-                UIManager.UI_Instance.PauseScreen.SetActive(false);
-                Time.timeScale = 1f;
-            }
-            else
-            {
-                UIManager.UI_Instance.PauseScreen.SetActive(true);
-                Time.timeScale = 0f;
-            }
+            UIManager.UI_Instance.PauseScreen.SetActive(false);
+            Time.timeScale = 1f;
+
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            UIManager.UI_Instance.PauseScreen.SetActive(true);
+            Time.timeScale = 0f;
+
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 }
