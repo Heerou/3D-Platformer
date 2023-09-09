@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour
     public Transform[] PatrolPoints;
     public int CurrentPatrolPoint;
     public NavMeshAgent Agent;
+    public Animator Animator;
 
     // Start is called before the first frame update
     void Start()
@@ -33,5 +34,7 @@ public class EnemyController : MonoBehaviour
             }
             Agent.SetDestination(PatrolPoints[CurrentPatrolPoint].position);
         }
+
+        Animator.SetBool("IsMoving", true);
     }
 }
