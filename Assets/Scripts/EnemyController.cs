@@ -12,11 +12,13 @@ public class EnemyController : MonoBehaviour
 
     public enum AIState
     {
-        idle, patrolling
+        idle, patrolling, chasing
     }
     public AIState CurrentState;
     public float WaitAtPoint;    
     private float waitCounter;
+
+    public float ChaseRange;
 
     // Start is called before the first frame update
     void Start()
@@ -26,12 +28,19 @@ public class EnemyController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {        
+        EnemyStates();
+    }
+
+    void EnemyStates()
     {
-        switch (CurrentState) 
+        //distance to the player
+        float distanceToPlayer = Vector3.Distance(transform.position, PlayerController.Instance.transform.position);
+        switch (CurrentState)
         {
             case AIState.idle:
                 Animator.SetBool("IsMoving", false);
-                if(waitCounter > 0)
+                if (waitCounter > 0)
                 {
                     waitCounter -= Time.deltaTime;
                 }
@@ -42,8 +51,19 @@ public class EnemyController : MonoBehaviour
                 }
                 break;
             case AIState.patrolling:
-                SetAgentDestination();
-                break;            
+                if (distanceToPlayer <= ChaseRange)
+                {
+                    CurrentState = AIState.chasing;
+                    Animator.SetBool("IsMoving", true);
+                }
+                else
+                {
+                    SetAgentDestination();
+                }
+                break;
+            case AIState.chasing:
+                Agent.SetDestination(PlayerController.Instance.transform.position);
+                break;
         }
     }
 
