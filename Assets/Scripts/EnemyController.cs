@@ -10,21 +10,45 @@ public class EnemyController : MonoBehaviour
     public NavMeshAgent Agent;
     public Animator Animator;
 
+    public enum AIState
+    {
+        idle, patrolling
+    }
+    public AIState CurrentState;
+    public float WaitAtPoint;    
+    private float waitCounter;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        waitCounter = WaitAtPoint;
     }
 
     // Update is called once per frame
     void Update()
     {
-        SetAgentDestination();
+        switch (CurrentState) 
+        {
+            case AIState.idle:
+                Animator.SetBool("IsMoving", false);
+                if(waitCounter > 0)
+                {
+                    waitCounter -= Time.deltaTime;
+                }
+                else
+                {
+                    CurrentState = AIState.patrolling;
+                    Agent.SetDestination(PatrolPoints[CurrentPatrolPoint].position);
+                }
+                break;
+            case AIState.patrolling:
+                SetAgentDestination();
+                break;            
+        }
     }
 
     void SetAgentDestination()
-    {
-        Agent.SetDestination(PatrolPoints[CurrentPatrolPoint].position);
+    {        
         if (Agent.remainingDistance <= .2f)
         {
             CurrentPatrolPoint++;
@@ -32,7 +56,9 @@ public class EnemyController : MonoBehaviour
             {
                 CurrentPatrolPoint = 0;
             }
-            Agent.SetDestination(PatrolPoints[CurrentPatrolPoint].position);
+            CurrentState = AIState.idle;
+            waitCounter = WaitAtPoint;
+            //Agent.SetDestination(PatrolPoints[CurrentPatrolPoint].position);
         }
 
         Animator.SetBool("IsMoving", true);
